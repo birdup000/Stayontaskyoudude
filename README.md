@@ -22,6 +22,3 @@ A simple task reminder application that prompts the user to stay on task after a
 - Python 3
 - tkinter
 - PIL (Python Imaging Library)
-
-## Note
-- If the user tries to click the "Start Task" button while a task is
