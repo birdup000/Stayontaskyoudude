@@ -55,6 +55,8 @@ except TclError:
 task_label = tk.Label(root, text="Task not started.")
 task_label.pack()
 
+label = tk.Label(root, text="Enter the number of minutes for task:")
+label.pack()
 e1 = tk.Entry(root)
 e1.pack()
 
