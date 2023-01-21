@@ -19,7 +19,10 @@ def stop_task():
     task_button.config(state="normal")
     stop_button.config(state="disabled")
     root.after_cancel(alert_id)
-    top.destroy()
+    try:
+        top.destroy()
+    except NameError:
+        pass
 
 def alert():
     global top
@@ -44,7 +47,10 @@ def alert():
 root = tk.Tk()
 root.geometry("400x200") 
 root.title("Stay on Task")
-root.iconbitmap("cake.ico")
+try:
+    root.iconbitmap("cake.ico")
+except TclError:
+    pass
 
 task_label = tk.Label(root, text="Task not started.")
 task_label.pack()
