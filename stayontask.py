@@ -44,7 +44,7 @@ def alert():
 root = tk.Tk()
 root.geometry("400x200") 
 root.title("Stay on Task")
-root.iconbitmap("custom_icon.ico")
+root.iconbitmap("cake.ico")
 
 task_label = tk.Label(root, text="Task not started.")
 task_label.pack()
