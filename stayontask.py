@@ -33,7 +33,8 @@ def alert():
     top.attributes("-topmost", True) 
     top.title("Stay on Task")
     label = tk.Label(top, text="Don't forget to stay on task! Close this window to close the bee picture.")
-    label.pack()
+    label.pack(padx=10, pady=10)
+    label.config(font=("Courier", 18), anchor="center")
     # Open the image file
     image = Image.open("bee.png")
     # Convert the image to a PhotoImage object
@@ -55,10 +56,12 @@ except TclError:
 task_label = tk.Label(root, text="Task not started.")
 task_label.pack()
 
-label = tk.Label(root, text="Enter the number of minutes for task:")
-label.pack()
 e1 = tk.Entry(root)
 e1.pack()
+e1.insert(0,"10")
+
+minutes = tk.Label(root, text="Minutes")
+minutes.pack()
 
 task_button = tk.Button(root, text="Start Task", command=start_task)
 task_button.pack()
