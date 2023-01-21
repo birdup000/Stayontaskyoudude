@@ -2,27 +2,37 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 
+task_running = False
+
 def start_task():
-    task_label.config(text="Working on task...")
-    task_button.config(state="disabled")
-    stop_button.config(state="normal")
-    try:
-        time = int(e1.get())
-    except ValueError:
-        messagebox.showerror("Stay on Task", "Please enter a valid number of minutes")
-        return
-    global alert_id
-    alert_id = root.after(time*60*1000, alert) 
+    global task_running
+    if task_running:
+        task_button.config(bg="red")
+    else:
+        task_button.config(bg="white")
+        task_running = True
+        task_label.config(text="Working on task...")
+        stop_button.config(state="normal")
+        try:
+            time = int(e1.get())
+        except ValueError:
+            messagebox.showerror("Stay on Task", "Please enter a valid number of minutes")
+            return
+        global alert_id
+        alert_id = root.after(time*60*1000, alert) 
 
 def stop_task():
+    global task_running
+    task_running = False
     task_label.config(text="Task stopped.")
-    task_button.config(state="normal")
-    stop_button.config(state="disabled")
+    stop_button.config(bg="red", state="disabled")
+    root.after(3000, change_color)
     root.after_cancel(alert_id)
-    try:
+    if 'top' in globals() and top:
         top.destroy()
-    except NameError:
-        pass
+        
+def change_color():
+    stop_button.config(bg="white")
 
 def alert():
     global top
@@ -46,6 +56,7 @@ def alert():
     label.pack()
     # Keep a reference to the image object
     label.image = photo
+    top.protocol("WM_DELETE_WINDOW", stop_task)
 
 root = tk.Tk()
 root.geometry("400x200") 
@@ -59,7 +70,7 @@ task_label = tk.Label(root, text="Task not started.")
 task_label.pack()
 
 # Create the Spinbox widget
-e1 = tk.Spinbox(root, from_=1, to=60, increment=5, command=start_task)
+e1 = tk.Spinbox(root, from_=1, to=60, increment=1, command=start_task)
 e1.pack()
 e1.delete(0, "end")
 e1.insert(0, 10)
