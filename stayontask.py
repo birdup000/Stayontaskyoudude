@@ -27,20 +27,22 @@ def stop_task():
 def alert():
     global top
     top = tk.Toplevel(root)
-    top.geometry("300x150+500+200") 
     top.overrideredirect(True) 
     top.lift() 
     top.attributes("-topmost", True) 
     top.title("Stay on Task")
     label = tk.Label(top, text="Don't forget to stay on task! Close this window to close the bee picture.")
+    label.config(font=("Courier", 12), anchor="center")
     label.pack(padx=10, pady=10)
-    label.config(font=("Courier", 18), anchor="center")
+    
     # Open the image file
     image = Image.open("bee.png")
+    # Resize the image
+    image.thumbnail((200, 200))
     # Convert the image to a PhotoImage object
     photo = ImageTk.PhotoImage(image)
     # Create a label to display the image
-    label = tk.Label(top, image=photo)
+    label = tk.Label(top, image=photo, width=200, height=200)
     label.pack()
     # Keep a reference to the image object
     label.image = photo
@@ -56,9 +58,11 @@ except TclError:
 task_label = tk.Label(root, text="Task not started.")
 task_label.pack()
 
-e1 = tk.Entry(root)
+# Create the Spinbox widget
+e1 = tk.Spinbox(root, from_=1, to=60, increment=5, command=start_task)
 e1.pack()
-e1.insert(0,"10")
+e1.delete(0, "end")
+e1.insert(0, 10)
 
 minutes = tk.Label(root, text="Minutes")
 minutes.pack()
