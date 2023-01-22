@@ -1,5 +1,5 @@
 # Stay on Task
-A simple task reminder application that prompts the user to stay on task after a specified amount of time. This program can be a useful tool for individuals with ADHD (Attention Deficit Hyperactivity Disorder) or anyone who has difficulty staying focused and on task. 
+A simple task reminder application that prompts the user to stay on task after a specified amount of time. This program can be a useful tool for individuals with ADHD (Attention Deficit Hyperactivity Disorder) or anyone who has difficulty staying focused and on task. The application is designed to help users stay on task by providing a visual and auditory reminder to take breaks and refocus.
 
 ## Features
 - Input the duration of the task in minutes using a Spinbox widget
@@ -22,3 +22,6 @@ A simple task reminder application that prompts the user to stay on task after a
 - Python 3
 - tkinter
 - PIL (Python Imaging Library)
+
+## How it helps with ADHD
+Individuals with ADHD often struggle with maintaining focus and attention for prolonged periods of time. This application helps by providing a visual and auditory reminder to take breaks and refocus. By taking regular breaks, users can prevent burnout and improve their overall productivity. Additionally, the bee picture alert serves as an attention-grabbing reminder that helps users refocus and return to their task with renewed energy and attention.
