@@ -16,7 +16,7 @@ A simple task reminder application that prompts the user to stay on task after a
 ## Usage
 1. Run the script and open the program
 2. Input the duration of the task in minutes and seconds using the Spinbox widgets
-3. Option to enable or disable dark mode by clicking on the checkbox
+3. Option to enable or disable dark mode by clicking on the button
 4. Click the "Start Task" button to start the task
 5. Once the countdown is complete, the alert window will appear with a reminder message "Don't forget to stay on task! Close this window to close the picture."
 6. Click the "Stop Task" button to stop the task at any time
