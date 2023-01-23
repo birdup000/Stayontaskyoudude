@@ -3,8 +3,11 @@ import tkinter.ttk as ttk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 
+
 task_running = False
 dark_mode = False
+global alert_id
+
 
 def start_task():
     global task_running
@@ -16,12 +19,15 @@ def start_task():
         task_label.config(text="Working on task...")
         stop_button.config(state="normal")
         try:
-            time = int(e1.get())
+            minutes = int(e1.get())
+            seconds = int(e2.get())
+            time = (minutes * 60 + seconds) * 1000
         except ValueError:
-            messagebox.showerror("Stay on Task", "Please enter a valid number of minutes")
+            messagebox.showerror("Stay on Task", "Please enter a valid number of minutes and seconds")
             return
         global alert_id
-        alert_id = root.after(time*60*1000, alert) 
+        alert_id = root.after(time, alert)
+
 
 def stop_task():
     global task_running
@@ -46,7 +52,6 @@ def alert():
     label = tk.Label(top, text="Don't forget to stay on task! Close this window to close the bee picture.")
     label.config(font=("Courier", 12), anchor="center")
     label.pack(padx=10, pady=10)
-    
     # Open the image file
     image = Image.open("bee.png")
     # Resize the image
@@ -59,7 +64,7 @@ def alert():
     # Keep a reference to the image object
     label.image = photo
     top.protocol("WM_DELETE_WINDOW", stop_task)
-    top.mainloop()
+
 
 root = tk.Tk()
 root.geometry("400x200") 
@@ -109,24 +114,7 @@ e2.insert(0, 0)
 
 
 
-def start_task():
-    global task_running
-    if task_running:
-        task_button.config(bg="red")
-    else:
-        task_button.config(bg="white")
-        task_running = True
-        task_label.config(text="Working on task...")
-        stop_button.config(state="normal")
-        try:
-            minutes = int(e1.get())
-            seconds = int(e2.get())
-        except ValueError:
-            messagebox.showerror("Stay on Task", "Please enter a valid number of minutes and seconds")
-            return
-        time = minutes * 60 + seconds
-        global alert_id
-        alert_id = root.after(time*1000, alert)
+
 
 
 
