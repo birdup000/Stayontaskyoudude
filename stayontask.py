@@ -78,9 +78,6 @@ stop_button = tk.Button(root, text="Stop Task", command=stop_task, state="disabl
 stop_button.pack()
 
 
-
-
-
 global alert_id
 
 
@@ -111,11 +108,6 @@ e2.delete(0, "end")
 e2.insert(0, 0)
 
 
-task_button = tk.Button(root, text="Start Task", command=lambda: validate_start(start_task))
-task_button.pack()
-
-
-
 
 def start_task():
     global task_running
@@ -135,10 +127,6 @@ def start_task():
         time = minutes * 60 + seconds
         global alert_id
         alert_id = root.after(time*1000, alert)
-
-
-
-
 
 
 
